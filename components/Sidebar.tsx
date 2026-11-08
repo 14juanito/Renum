@@ -17,7 +17,7 @@ export function Sidebar({ items, logout }: { items: NavItem[]; logout: () => Pro
   return (
     <aside className="no-print sticky top-0 hidden h-screen w-[260px] shrink-0 flex-col bg-white lg:flex">
       <div className="ligne-etat" aria-hidden />
-      <div className="px-6 pb-2 pt-5"><Link href="/"><Logo size="sm" /></Link></div>
+      <div className="px-6 pb-2 pt-5"><Link href="/"><Logo size="md" /></Link></div>
       <nav className="flex-1 space-y-1 overflow-y-auto px-4 py-2 text-sm" aria-label="Navigation principale">
         {items.map((it) => {
           const Icon = ICONS[it.icon];
