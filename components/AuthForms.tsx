@@ -1,4 +1,5 @@
 "use client";
+import { PasswordInput } from "./PasswordInput";
 import Link from "next/link";
 import { useState } from "react";
 import { ActionForm, Submit } from "./forms";
@@ -11,7 +12,7 @@ function PasswordField({ name = "password", label = "Mot de passe" }: { name?: s
   return (
     <div>
       <label className="label req" htmlFor={name}>{label}</label>
-      <input id={name} name={name} type="password" required autoComplete="new-password" className="input" value={pw} onChange={(e) => setPw(e.target.value)} />
+      <PasswordInput id={name} name={name} required autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} />
       <p className={`help ${pw && !issues.length ? "text-emerald-700" : ""}`}>
         {pw ? (issues.length ? `Manque : ${issues.join(", ")}` : "Mot de passe robuste ✓") : "10 caractères min., majuscule, minuscule, chiffre et caractère spécial."}
       </p>
@@ -31,7 +32,7 @@ export function RegisterForm() {
       <div><label className="label" htmlFor="structureName">Structure</label><input id="structureName" name="structureName" className="input" placeholder="Ex. : Direction Générale des Impôts" /><p className="help">Vous compléterez la fiche détaillée après l&apos;inscription.</p></div>
       <div><label className="label req" htmlFor="email">E-mail professionnel</label><input id="email" name="email" type="email" required className="input" autoComplete="email" /><p className="help">De préférence une adresse institutionnelle.</p></div>
       <PasswordField />
-      <div><label className="label req" htmlFor="password2">Confirmer le mot de passe</label><input id="password2" name="password2" type="password" required className="input" autoComplete="new-password" /></div>
+      <div><label className="label req" htmlFor="password2">Confirmer le mot de passe</label><PasswordInput id="password2" name="password2" required className="input" autoComplete="new-password" /></div>
       <label className="flex items-start gap-2 text-sm"><input type="checkbox" name="consent" required className="mt-1" /> <span>J&apos;accepte les <Link className="link" href="/legal/cgu" target="_blank">conditions d&apos;utilisation</Link> et la <Link className="link" href="/legal/confidentialite" target="_blank">politique de confidentialité</Link>.</span></label>
       <Submit className="btn-primary w-full">Créer mon compte</Submit>
     </ActionForm>
@@ -43,7 +44,7 @@ export function LoginForm({ next }: { next?: string }) {
     <ActionForm action={loginAction} className="space-y-4">
       <input type="hidden" name="next" value={next ?? ""} />
       <div><label className="label" htmlFor="email">E-mail</label><input id="email" name="email" type="email" required className="input" autoComplete="username" /></div>
-      <div><label className="label" htmlFor="password">Mot de passe</label><input id="password" name="password" type="password" required className="input" autoComplete="current-password" /></div>
+      <div><label className="label" htmlFor="password">Mot de passe</label><PasswordInput id="password" name="password" required className="input" autoComplete="current-password" /></div>
       <Submit className="btn-primary w-full">Me connecter</Submit>
       <div className="flex justify-between text-sm"><Link className="link" href="/mot-de-passe-oublie">Mot de passe oublié ?</Link><Link className="link" href="/inscription">Créer un compte</Link></div>
     </ActionForm>
@@ -93,7 +94,7 @@ export function ResetForm({ token }: { token: string }) {
     <ActionForm action={resetAction} className="space-y-4">
       <input type="hidden" name="t" value={token} />
       <PasswordField label="Nouveau mot de passe" />
-      <div><label className="label req" htmlFor="password2">Confirmer</label><input id="password2" name="password2" type="password" required className="input" /></div>
+      <div><label className="label req" htmlFor="password2">Confirmer</label><PasswordInput id="password2" name="password2" required className="input" /></div>
       <Submit className="btn-primary w-full">Enregistrer</Submit>
     </ActionForm>
   );

@@ -1,4 +1,5 @@
 "use client";
+import { PasswordInput } from "./PasswordInput";
 import { ActionForm, Submit } from "./forms";
 import { saveProfileAction } from "@/app/actions/espace";
 import { changePasswordAction } from "@/app/actions/auth";
@@ -48,8 +49,8 @@ export function ProfileForm({ u }: { u: P }) {
       <ActionForm action={changePasswordAction} className="card space-y-4">
         <h2 className="font-semibold">Changer mon mot de passe</h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div><label className="label" htmlFor="current">Mot de passe actuel</label><input id="current" name="current" type="password" required className="input" autoComplete="current-password" /></div>
-          <div><label className="label" htmlFor="password">Nouveau mot de passe</label><input id="password" name="password" type="password" required className="input" autoComplete="new-password" /></div>
+          <div><label className="label" htmlFor="current">Mot de passe actuel</label><PasswordInput id="current" name="current" required className="input" autoComplete="current-password" /></div>
+          <div><label className="label" htmlFor="password">Nouveau mot de passe</label><PasswordInput id="password" name="password" required className="input" autoComplete="new-password" /></div>
         </div>
         <Submit className="btn-secondary">Modifier le mot de passe</Submit>
       </ActionForm>
