@@ -77,7 +77,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <div className="flex min-w-0 flex-1 flex-col">
               <div className="ligne-etat lg:hidden" aria-hidden />
               <header className="no-print flex flex-wrap items-center gap-3 px-4 py-4 lg:px-8">
-                <Link href="/" className="lg:hidden"><Logo size="sm" compact /></Link>
+                <Link href="/" className="lg:hidden" aria-label="Accueil RENUM"><Logo size="sm" /></Link>
                 <form action="/annuaire" className="hidden flex-1 md:block" role="search">
                   <label className="flex max-w-sm items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm text-slate-400">
                     <Search size={18} /><input name="q" placeholder="Rechercher une structure…" className="w-full bg-transparent text-gov-ink outline-none placeholder:text-slate-400" aria-label="Rechercher dans l'annuaire" />
@@ -89,7 +89,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     <span className="font-display text-xs leading-tight">{today.toLocaleDateString("fr-FR", { weekday: "long", timeZone: "Africa/Kinshasa" })}<br /><span className="text-slate-500">{today.toLocaleDateString("fr-FR", { month: "long", year: "numeric", timeZone: "Africa/Kinshasa" })}</span></span>
                     <CalendarDays size={18} className="text-slate-400" />
                   </div>
-                  <span className="relative grid h-11 w-11 place-items-center rounded-full bg-white" aria-hidden><Bell size={18} /><span className="absolute right-3 top-3 h-2 w-2 rounded-full bg-flag-red" /></span>
+                  <span className="relative hidden h-11 w-11 place-items-center rounded-full bg-white sm:grid" aria-hidden><Bell size={18} /><span className="absolute right-3 top-3 h-2 w-2 rounded-full bg-flag-red" /></span>
                   <Link href="/espace/profil" className="flex items-center gap-3 rounded-full bg-white py-1.5 pl-1.5 pr-4">
                     <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-600 font-display text-sm font-bold text-white">{(user.firstName[0] ?? "").toUpperCase()}{(user.lastName[0] ?? "").toUpperCase()}</span>
                     <span className="hidden text-left leading-tight sm:block"><span className="block font-display text-sm font-semibold">{user.firstName} {user.lastName}</span><span className="block text-xs text-slate-500">{ROLES[user.role]}</span></span>

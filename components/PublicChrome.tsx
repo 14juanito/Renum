@@ -1,18 +1,14 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { PublicNav } from "./PublicNav";
 
 /** En-tête RGPNE : fond blanc, hauteur 90 px, logotype à gauche, navigation en Cooper Hewitt 11,5 px (actif #274285). */
 export function PublicHeader() {
-  const nav = [["/", "Accueil"], ["/aide", "Aide & FAQ"], ["/legal/confidentialite", "Confidentialité"]];
   return (
     <header className="bg-white">
       <div className="mx-auto flex min-h-[90px] max-w-7xl flex-wrap items-center gap-4 px-4 py-3">
-        <Link href="/"><Logo /></Link>
-        <nav className="ml-auto flex flex-wrap items-center gap-1 font-display text-[11.5px] font-bold uppercase" aria-label="Navigation principale">
-          {nav.map(([h, l]) => <Link key={h} href={h} className="rounded-md px-[15px] py-2 text-brand-500 hover:bg-brand-500 hover:text-white">{l}</Link>)}
-          <Link href="/connexion" className="rounded-md px-[15px] py-2 text-brand-500 hover:bg-brand-500 hover:text-white">Me connecter</Link>
-          <Link href="/inscription" className="rounded-md bg-brand-500 px-[15px] py-2 text-white hover:bg-brand-600">Je m&apos;enregistre</Link>
-        </nav>
+        <Link href="/" aria-label="Accueil RENUM"><Logo /></Link>
+        <PublicNav />
       </div>
       <div className="ligne-etat" aria-hidden />
     </header>
