@@ -1,41 +1,65 @@
 @import "tailwindcss";
 
+/* RGPNE — Référentiel Général des Plateformes Numériques de l'État (RDC)
+   Couleurs principales (drapeau) : #0095C9 / #FFF24B / #DB3832
+   Secondaires : #17418A (bleu institutionnel), #274285 (navigation), #ED7016, #65B32E, #09242E, #894B1E, #1E3E07, #323230, #405D64, #B72A25
+   Typographies : Cooper Hewitt (principale : titres, navigation, dénominations) ; Poppins (contenus). */
 @theme {
-  --color-brand-50: #eef6ff;
-  --color-brand-100: #d9ebff;
-  --color-brand-500: #0a6fd6;
-  --color-brand-600: #075bb3;
-  --color-brand-700: #064a91;
-  --color-brand-900: #0b2545;
-  --color-flag-yellow: #f7d618;
-  --color-flag-red: #ce1021;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-brand-50: #eef2fa;
+  --color-brand-100: #dbe3f3;
+  --color-brand-200: #b5c4e5;
+  --color-brand-500: #274285;
+  --color-brand-600: #17418a;
+  --color-brand-700: #133672;
+  --color-brand-900: #09242e;
+  --color-flag-blue: #0095c9;
+  --color-flag-yellow: #fff24b;
+  --color-flag-red: #db3832;
+  --color-gov-red-dark: #b72a25;
+  --color-gov-orange: #ed7016;
+  --color-gov-green: #65b32e;
+  --color-gov-ink: #323230;
+  --color-gov-slate: #405d64;
+  --color-surface: #f2f3f5;
+  --color-panel: #f6f7f9;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Cooper Hewitt", "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root { color-scheme: light; }
-body {
-  @apply bg-slate-50 text-slate-900 antialiased; }
+body { @apply bg-surface text-gov-ink antialiased; font-family: var(--font-sans); }
+h1, h2, h3, h4, .font-display, nav, .btn, th { font-family: var(--font-display); }
 
+/* Ligne d'État : bleu | jaune | rouge, 6 px (RGPNE §Footer) */
+.ligne-etat { height: 6px; background: linear-gradient(90deg, #0095c9 0 33.333%, #fff24b 33.333% 66.666%, #db3832 66.666%); }
+.ligne-etat-v { width: 4px; background: linear-gradient(180deg, #0095c9 0 33.333%, #fff24b 33.333% 66.666%, #db3832 66.666%); }
+
+@layer components {
 .input, .select, .textarea {
-  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm outline-none transition
-    focus:border-brand-500 focus:ring-2 focus:ring-brand-100 disabled:bg-slate-100;
+  @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none transition
+    focus:border-brand-600 focus:ring-4 focus:ring-brand-100 disabled:bg-panel;
 }
 .textarea { min-height: 7rem; }
-.label { @apply mb-1 block text-sm font-medium text-slate-700; }
+.label { @apply mb-1.5 block text-sm font-medium text-gov-ink; }
 .help { @apply mt-1 text-xs text-slate-500; }
-.btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-60 cursor-pointer; }
-.btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-60 cursor-pointer bg-brand-600 text-white hover:bg-brand-700 focus-visible:ring-2 focus-visible:ring-brand-100; }
-.btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-60 cursor-pointer border border-slate-300 bg-white text-slate-800 hover:bg-slate-50; }
-.btn-danger { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-60 cursor-pointer bg-flag-red text-white hover:opacity-90; }
-.btn-sm { padding: 0.25rem 0.625rem; font-size: 0.75rem; line-height: 1rem; }
-.card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
+.btn { @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60; }
+.btn-primary { @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60 bg-flag-red text-white shadow-sm hover:bg-gov-red-dark focus-visible:ring-4 focus-visible:ring-red-100; font-family: var(--font-display); }
+.btn-blue { @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60 bg-brand-600 text-white hover:bg-brand-700; font-family: var(--font-display); }
+.btn-secondary { @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60 bg-white text-gov-ink ring-1 ring-slate-200 hover:bg-panel; font-family: var(--font-display); }
+.btn-danger { @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:opacity-60 bg-gov-red-dark text-white hover:opacity-90; font-family: var(--font-display); }
+.btn-sm { padding: 0.35rem 0.85rem; font-size: 0.75rem; line-height: 1rem; }
+.card { @apply rounded-3xl bg-white p-6; }
+.panel { @apply rounded-2xl bg-panel p-4; }
 .table { @apply w-full text-left text-sm; }
-.table th { @apply border-b border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-500; }
-.table td { @apply border-b border-slate-100 px-3 py-2 align-top; }
+.table th { @apply border-b border-slate-100 px-4 py-3 text-xs font-medium text-slate-500; }
+.table td { @apply border-b border-slate-100 px-4 py-3 align-top; }
+.table tr:last-child td { border-bottom: 0; }
 .link { @apply text-brand-600 underline-offset-2 hover:underline; }
 .req::after { content: " *"; @apply text-flag-red; }
 
+}
+
 @media print {
-  header, footer, .no-print { display: none !important; }
+  header, footer, aside, .no-print { display: none !important; }
   body { background: white; }
 }

@@ -22,30 +22,31 @@ export default async function Home() {
   ];
   return (
     <div className="space-y-12">
-      <section className="overflow-hidden rounded-2xl bg-brand-900 text-white shadow-lg">
+      <section className="overflow-hidden rounded-[2rem] bg-brand-600 text-white">
+        <div className="ligne-etat" aria-hidden />
         <div className="grid gap-8 p-8 md:grid-cols-[1.4fr_1fr] md:p-12">
           <div>
             <p className="text-sm font-medium uppercase tracking-widest text-flag-yellow">{settings.campaignName}</p>
-            <h1 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Un guichet unique pour recenser le numérique public</h1>
+            <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight md:text-5xl">Un guichet unique pour recenser le numérique public</h1>
             <p className="mt-4 max-w-xl text-brand-100">
               Responsables des systèmes d&apos;information des administrations : déclarez votre structure et exprimez vos besoins numériques.
               Les données consolidées éclairent la politique publique du numérique.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/inscription" className="btn bg-flag-yellow px-6 py-3 text-base text-brand-900 hover:brightness-95">Je m&apos;enregistre</Link>
-              <Link href="/connexion" className="btn border border-white/40 px-6 py-3 text-base text-white hover:bg-white/10">Me connecter</Link>
+              <Link href="/inscription" className="btn-primary px-6 py-3 text-base">Je m&apos;enregistre</Link>
+              <Link href="/connexion" className="btn bg-white px-6 py-3 text-base text-brand-600 hover:bg-brand-50">Me connecter</Link>
             </div>
           </div>
           <div className="space-y-4 self-center">
-            <div className="rounded-xl bg-white/10 p-5">
+            <div className="rounded-3xl bg-white/10 p-5">
               <div className="text-xs uppercase tracking-wide text-brand-100">Clôture de la collecte</div>
               <div className="mt-2 text-2xl"><Countdown end={settings.campaignEnd} /></div>
               <div className="mt-1 text-xs text-brand-100">Du {new Date(settings.campaignStart).toLocaleDateString("fr-FR")} au {new Date(settings.campaignEnd).toLocaleDateString("fr-FR")}</div>
             </div>
             {settings.publicCounters && (
               <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-xl bg-white/10 p-5"><div className="text-3xl font-bold">{fmtNum(nStruct)}</div><div className="text-xs text-brand-100">structures inscrites</div></div>
-                <div className="rounded-xl bg-white/10 p-5"><div className="text-3xl font-bold">{fmtNum(nNeeds)}</div><div className="text-xs text-brand-100">besoins déposés</div></div>
+                <div className="rounded-3xl bg-white/10 p-5"><div className="text-3xl font-bold">{fmtNum(nStruct)}</div><div className="text-xs text-brand-100">structures inscrites</div></div>
+                <div className="rounded-3xl bg-white/10 p-5"><div className="text-3xl font-bold">{fmtNum(nNeeds)}</div><div className="text-xs text-brand-100">besoins déposés</div></div>
               </div>
             )}
           </div>
@@ -53,12 +54,12 @@ export default async function Home() {
       </section>
 
       <section>
-        <h2 className="text-xl font-bold text-brand-900">Comment ça marche</h2>
+        <h2 className="font-display text-2xl font-bold text-[#1a1a1a]">Comment ça marche</h2>
         <ol className="mt-4 grid gap-4 md:grid-cols-4">
           {steps.map(([n, t, d]) => (
             <li key={n} className="card">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-brand-100 font-bold text-brand-700">{n}</span>
-              <h3 className="mt-3 font-semibold">{t}</h3>
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-flag-red font-display font-bold text-white">{n}</span>
+              <h3 className="mt-3 font-display font-bold">{t}</h3>
               <p className="mt-1 text-sm text-slate-600">{d}</p>
             </li>
           ))}
@@ -66,9 +67,9 @@ export default async function Home() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">
-        <div className="card"><h3 className="font-semibold">Pourquoi participer ?</h3><p className="mt-2 text-sm text-slate-600">Vos besoins sont pris en compte dans la note de synthèse nationale et dans les pistes de mutualisation entre administrations.</p></div>
-        <div className="card"><h3 className="font-semibold">Moins de 15 minutes</h3><p className="mt-2 text-sm text-slate-600">Formulaire mobile-first, sauvegarde automatique des brouillons, utilisable en 3G.</p></div>
-        <div className="card"><h3 className="font-semibold">Données protégées</h3><p className="mt-2 text-sm text-slate-600">Accès par rôle, chiffrement en transit, journal d&apos;audit. Vos coordonnées ne sont publiées qu&apos;avec votre consentement.</p></div>
+        <div className="card"><h3 className="font-display font-bold">Pourquoi participer ?</h3><p className="mt-2 text-sm text-slate-600">Vos besoins sont pris en compte dans la note de synthèse nationale et dans les pistes de mutualisation entre administrations.</p></div>
+        <div className="card"><h3 className="font-display font-bold">Moins de 15 minutes</h3><p className="mt-2 text-sm text-slate-600">Formulaire mobile-first, sauvegarde automatique des brouillons, utilisable en 3G.</p></div>
+        <div className="card"><h3 className="font-display font-bold">Données protégées</h3><p className="mt-2 text-sm text-slate-600">Accès par rôle, chiffrement en transit, journal d&apos;audit. Vos coordonnées ne sont publiées qu&apos;avec votre consentement.</p></div>
       </section>
     </div>
   );

@@ -15,7 +15,7 @@ export function Countdown({ end }: { end: string }) {
   const parts = [Math.floor(d / 86400000), Math.floor(d / 3600000) % 24, Math.floor(d / 60000) % 60, Math.floor(d / 1000) % 60];
   const labels = ["j", "h", "min", "s"];
   return (
-    <span className="font-mono tabular-nums" aria-live="off">
+    <span className="font-display font-bold tabular-nums" aria-live="off">
       {parts.map((p, i) => <span key={i} className="mr-2">{String(p).padStart(2, "0")}<small className="ml-0.5 text-xs opacity-70">{labels[i]}</small></span>)}
     </span>
   );

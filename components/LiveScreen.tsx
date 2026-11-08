@@ -55,12 +55,13 @@ export function LiveScreen() {
   const maxP = Math.max(1, ...(d?.byProvince.map((c) => c.count) ?? [1]));
 
   return (
-    <div ref={ref} className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-brand-900 p-8 text-white">
+    <div ref={ref} className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-brand-600 p-8 text-white">
+      <div className="ligne-etat absolute inset-x-0 top-0" aria-hidden />
       <div className="flex items-center justify-between">
-        <div>
+        <div className="flex items-center gap-5"><img src="/armoiries.png" alt="" className="h-16 w-16 rounded-full bg-white" /><span className="ligne-etat-v h-16 rounded-full" /><div>
           <div className="text-sm uppercase tracking-[0.3em] text-flag-yellow">En direct</div>
-          <h1 className="text-2xl font-bold md:text-4xl">{d?.campaign ?? "RENUM"}</h1>
-        </div>
+          <h1 className="font-display text-2xl font-bold md:text-4xl">{d?.campaign ?? "RENUM"}</h1>
+        </div></div>
         <div className="flex items-center gap-3 text-sm">
           {err && <span className="rounded bg-flag-red px-2 py-1">Connexion perdue — nouvelle tentative…</span>}
           <button className="rounded border border-white/30 px-3 py-1 hover:bg-white/10" onClick={() => (document.fullscreenElement ? document.exitFullscreen() : ref.current?.requestFullscreen())}>Plein écran</button>
@@ -69,7 +70,7 @@ export function LiveScreen() {
       </div>
       <div className="mt-8 grid grid-cols-3 gap-6">
         {[["Structures inscrites", nf(s)], ["Besoins déposés", nf(n)], ["Montant cumulé (USD)", nf(m)]].map(([k, v]) => (
-          <div key={k} className="rounded-2xl bg-white/10 p-6"><div className="text-lg text-brand-100">{k}</div><div className="mt-2 font-mono text-5xl font-black tabular-nums md:text-7xl">{v}</div></div>
+          <div key={k} className="rounded-2xl bg-white/10 p-6"><div className="text-lg text-brand-100">{k}</div><div className="mt-2 font-display text-5xl font-extrabold tabular-nums md:text-7xl">{v}</div></div>
         ))}
       </div>
       <div className="mt-8 flex-1 rounded-2xl bg-white/5 p-6">
@@ -85,7 +86,7 @@ export function LiveScreen() {
           <div>
             <h2 className="mb-4 text-2xl font-semibold">Besoins par province</h2>
             <div className="grid grid-cols-2 gap-x-10 gap-y-3">{d?.byProvince.map((c) => (
-              <div key={c.label} className="flex items-center gap-4"><div className="w-40 truncate text-lg">{c.label}</div><div className="h-6 flex-1 rounded bg-white/10"><div className="h-6 rounded bg-brand-500 transition-all duration-1000" style={{ width: `${(c.count / maxP) * 100}%` }} /></div><div className="w-12 text-right font-mono">{c.count}</div></div>
+              <div key={c.label} className="flex items-center gap-4"><div className="w-40 truncate text-lg">{c.label}</div><div className="h-6 flex-1 rounded bg-white/10"><div className="h-6 rounded bg-flag-blue transition-all duration-1000" style={{ width: `${(c.count / maxP) * 100}%` }} /></div><div className="w-12 text-right font-mono">{c.count}</div></div>
             ))}</div>
           </div>
         )}

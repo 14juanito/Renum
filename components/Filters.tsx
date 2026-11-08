@@ -3,7 +3,7 @@ import type { Filters } from "@/lib/stats";
 
 export function FilterBar({ f, action }: { f: Filters; action: string }) {
   return (
-    <form action={action} className="card mb-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-6" role="search">
+    <form action={action} className="card grid gap-3 sm:grid-cols-3 lg:grid-cols-6" role="search">
       <select name="type" defaultValue={f.type ?? ""} className="select" aria-label="Type"><option value="">Tous types</option>{ADMIN_TYPES.map((t) => <option key={t.code} value={t.code}>{t.label}</option>)}</select>
       <select name="province" defaultValue={f.province ?? ""} className="select" aria-label="Province"><option value="">Toutes provinces</option>{PROVINCES.map((p) => <option key={p}>{p}</option>)}</select>
       <select name="category" defaultValue={f.category ?? ""} className="select" aria-label="Catégorie"><option value="">Toutes catégories</option>{CATEGORIES.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}</select>

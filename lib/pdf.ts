@@ -2,7 +2,7 @@ import "server-only";
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
 import { createHash } from "crypto";
 
-const BRAND = rgb(0.027, 0.357, 0.702);
+const BRAND = rgb(23 / 255, 65 / 255, 138 / 255); // #17418A (RGPNE)
 const DARK = rgb(0.043, 0.145, 0.27);
 const GREY = rgb(0.4, 0.45, 0.5);
 
@@ -27,6 +27,11 @@ class Writer {
   newPage() {
     this.page = this.doc.addPage([595.28, 841.89]);
     this.page.drawRectangle({ x: 0, y: 815, width: 595.28, height: 27, color: BRAND });
+    // Ligne d'État : bleu #0095C9 | jaune #FFF24B | rouge #DB3832
+    const w3 = 595.28 / 3;
+    this.page.drawRectangle({ x: 0, y: 811, width: w3, height: 4, color: rgb(0, 149 / 255, 201 / 255) });
+    this.page.drawRectangle({ x: w3, y: 811, width: w3, height: 4, color: rgb(1, 242 / 255, 75 / 255) });
+    this.page.drawRectangle({ x: 2 * w3, y: 811, width: w3, height: 4, color: rgb(219 / 255, 56 / 255, 50 / 255) });
     this.page.drawText(pdfSafe(this.header), { x: 40, y: 824, size: 10, font: this.bold, color: rgb(1, 1, 1) });
     this.y = 785;
   }
