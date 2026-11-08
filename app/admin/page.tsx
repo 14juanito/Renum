@@ -4,8 +4,6 @@ import { Columns } from "@/components/Charts";
 import { CATEGORIES } from "@/lib/referentials";
 import { requireRole } from "@/lib/auth";
 import { getSettings, listNeeds, listStructures, listUsers, storageKind } from "@/lib/db";
-import { llmEnabled } from "@/lib/ai";
-import { emailEnabled } from "@/lib/email";
 import { costOutliers, needUsd } from "@/lib/rules";
 import { AdminTabs } from "@/components/AdminTabs";
 import { fmtDate, fmtNum, Kpi, Notice, PageTitle, Progress, SectionTitle } from "@/components/ui";
@@ -42,8 +40,6 @@ export default async function Page() {
         actions={<><Link href="/admin/validation" className="btn-primary"><ShieldCheck size={16} />File de validation</Link><Link href="/tableau-de-bord" className="btn-secondary">Tableau de bord</Link></>} />
       <div className="space-y-2">
         {storageKind() === "file" && <Notice tone="warn">Stockage local de développement actif : configurez DATABASE_URL ou BLOB_READ_WRITE_TOKEN.</Notice>}
-        {!emailEnabled() && <Notice tone="warn">E-mail transactionnel non configuré (RESEND_API_KEY, EMAIL_FROM) : mode démonstration.</Notice>}
-        <Notice>Moteur IA : {llmEnabled() ? `modèle de langage (${process.env.AI_MODEL || "claude-opus-5-5"})` : "classifieur local par mots-clés (ANTHROPIC_API_KEY non configurée)"} · Persistance : {storageKind()}</Notice>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi tone="red" label="Besoins en attente" value={<Link href="/admin/validation">{pendingNeeds.length}</Link>} icon={<FileText size={18} />} hint="À valider" />

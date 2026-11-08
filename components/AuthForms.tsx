@@ -55,7 +55,7 @@ export function VerifyForm({ email, demo }: { email: string; demo?: string }) {
     <div className="space-y-6">
       {demo && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-          Mode démonstration (aucun e-mail configuré) — votre code : <code className="select-all rounded bg-white px-2 py-0.5 font-mono text-base font-bold">{demo}</code>
+          Votre code de vérification : <code className="select-all rounded bg-white px-2 py-0.5 font-mono text-base font-bold">{demo}</code>
         </div>
       )}
       <ActionForm action={verifyAction} className="space-y-4">
@@ -79,7 +79,7 @@ export function ForgotForm() {
     <ActionForm action={forgotAction} className="space-y-4">
       {(s) => (
         <>
-          {s?.demoCode && <p className="text-sm">Mode démonstration : <Link className="link font-semibold" href={s.demoCode}>ouvrir le lien de réinitialisation</Link></p>}
+          {s?.demoCode && <p className="text-sm"><Link className="link font-semibold" href={s.demoCode}>Ouvrir le lien de réinitialisation</Link></p>}
           <div><label className="label" htmlFor="email">E-mail du compte</label><input id="email" name="email" type="email" required className="input" /></div>
           <Submit className="btn-primary w-full">Recevoir un lien</Submit>
         </>

@@ -14,7 +14,6 @@ import { currentUser } from "@/lib/auth";
 import { getSettings, storageKind } from "@/lib/db";
 import { ROLES } from "@/lib/referentials";
 import { logoutAction } from "./actions/auth";
-import { emailEnabled } from "@/lib/email";
 import { MobileNav, Sidebar, type NavItem } from "@/components/Sidebar";
 import { PublicFooter, PublicHeader } from "@/components/PublicChrome";
 import { Logo } from "@/components/Logo";
@@ -60,12 +59,10 @@ function navFor(u: User): NavItem[] {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [user, settings] = await Promise.all([currentUser(), getSettings()]);
-  const demoMode = !emailEnabled();
   const ephemeral = storageKind() === "file" && process.env.VERCEL;
-  const banner = (demoMode || ephemeral || settings.infoBanner) && (
+  const banner = (ephemeral || settings.infoBanner) && (
     <div className="no-print rounded-2xl bg-flag-yellow/60 px-4 py-2 text-center text-xs text-gov-ink">
       {settings.infoBanner && <span className="mr-2 font-medium">{settings.infoBanner}</span>}
-      {demoMode && <span>Mode démonstration : aucun e-mail n&apos;est envoyé, les codes de vérification s&apos;affichent à l&apos;écran.</span>}
       {ephemeral && <span className="ml-2 font-semibold">Stockage non persistant — configurez une base de données.</span>}
     </div>
   );
